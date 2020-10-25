@@ -3,15 +3,14 @@ import {
   View,
   Text,
 } from 'react-native';
+import Login from './src/pages/login';
 
 
 const App = () => {
   return (
     <>
       <View>
-          <Text>
-            aaaaaaaaaaaaaaaaaaaaa
-          </Text>
+         <Login />
       </View>
     </>
   );
