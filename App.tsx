@@ -8,11 +8,7 @@ import Login from './src/pages/login';
 
 const App = () => {
   return (
-    <>
-      <View>
          <Login />
-      </View>
-    </>
   );
 };
 

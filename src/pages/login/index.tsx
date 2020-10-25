@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { Image, TouchableOpacity,View } from 'react-native'
+import { Image, TouchableOpacity, View } from 'react-native'
 
 import Text from '../../components/Text'
 
@@ -34,37 +34,43 @@ const Login = () => {
 
             <Styled.ButtonsWrapper>
                 <TouchableOpacity >
-                  
-                        {/* <Image source={require('../../assets/images/icons/facebook-icon.svg')} /> */}
-                
+
+                    {/* <Image source={require('../../assets/images/icons/facebook-icon.svg')} /> */}
+
                 </TouchableOpacity>
             </Styled.ButtonsWrapper>
 
-            <Text weight="SemiBold">
-                E-mail
-            </Text>
-            <Styled.Input
-                placeholder="Endereço de e-mail"
-                value={values.email}
-                onChangeText={handleEmailChange}
-                autoCapitalize="none"
-                autoCorrect={false}
-            />
-            <Text size="14px" weight="SemiBold">Senha</Text>
-            <Styled.Input
-                placeholder="Senha"
-                value={values.password}
-                onChangeText={handlePasswordChange}
-                secureTextEntry
-                autoCapitalize="none"
-                autoCorrect={false}
-            />
+            <Styled.ViewContainer>
+                <Text weight="SemiBold">
+                    E-mail
+                </Text>
 
-            <Styled.Button>
+                <Styled.Input
+                    placeholder="Endereço de e-mail"
+                    value={values.email}
+                    onChangeText={handleEmailChange}
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                />
 
-                <Styled.ButtonText>Entrar</Styled.ButtonText>
+                <Text size="14px" weight="SemiBold">Senha</Text>
+                <Styled.Input
+                    placeholder="Senha"
+                    value={values.password}
+                    onChangeText={handlePasswordChange}
+                    secureTextEntry
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                />
+            </Styled.ViewContainer>
 
-            </Styled.Button>
+
+            <Styled.ButtonContainer>
+                <Styled.Button>
+                    <Styled.ButtonText>Entrar</Styled.ButtonText>
+                </Styled.Button>
+                <Text>Ainda não esta registrado? Registre-se</Text>
+            </Styled.ButtonContainer>
 
 
 
