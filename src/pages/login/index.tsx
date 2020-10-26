@@ -4,6 +4,8 @@ import { Image, TouchableOpacity, View } from 'react-native'
 
 import Text from '../../components/Text'
 
+import facebookIcon from '../../assets/images/icons/facebook-icon-color-2.png'
+import googleIcon from '../../assets/images/icons/google-icon-color.png'
 
 import * as Styled from './styles'
 
@@ -24,6 +26,7 @@ const Login = () => {
 
     return (
         <Styled.LoginContainer>
+
             <Styled.TitleContainer>
                 <Text size="22px" weight="Bold">Login</Text>
             </Styled.TitleContainer>
@@ -33,11 +36,15 @@ const Login = () => {
             </Styled.SubtitleContainer>
 
             <Styled.ButtonsWrapper>
-                <TouchableOpacity >
 
-                    {/* <Image source={require('../../assets/images/icons/facebook-icon.svg')} /> */}
+                <Styled.IconButton >
+                    <Styled.Image source={facebookIcon} />
+                </Styled.IconButton>
+ 
+                <Styled.IconButton >
+                    <Styled.Image source={googleIcon} />
+                </Styled.IconButton>
 
-                </TouchableOpacity>
             </Styled.ButtonsWrapper>
 
             <Styled.ViewContainer>

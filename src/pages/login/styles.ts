@@ -1,7 +1,7 @@
 import styled from 'styled-components/native'
 import LinearGradient from 'react-native-linear-gradient'
 import Text from '../../components/Text'
-import {View} from 'react-native'
+import { View } from 'react-native'
 
 export const LoginContainer = styled(View)`
     flex:1;
@@ -29,7 +29,31 @@ export const SubtitleContainer = styled.View`
 `
 
 export const ButtonsWrapper = styled.View`
+    display:flex;
 
+    flex-direction:row;
+    justify-content:space-around;
+    
+
+    width:100%;
+    height:8%;
+    margin-bottom:10%;
+
+`
+
+export const IconButton = styled.TouchableOpacity`
+    background:#EBECF0;
+    width:45%;
+    align-items:center;
+    justify-content:center;
+    border-radius:15px;
+    
+`
+
+export const Image = styled.Image`
+    width:30px;
+    height:30px;
+        
 `
 
 export const Input = styled.TextInput`
