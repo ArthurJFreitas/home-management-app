@@ -32,9 +32,10 @@ const Login = ({ navigation }: any) => {
     }
 
     const onSuccess = ({ data }: Props) => {
-
-        console.log(data)
-
+        if(data['token']) {
+            setError("")
+            navigation.navigate('Home')
+        }
     };
 
     const onFailure = (error: any) => {
@@ -122,11 +123,6 @@ const Login = ({ navigation }: any) => {
                     </TextLink>
 
             </Styled.ButtonContainer>
-
-
-
-
-
         </Styled.LoginContainer>
     )
 }
