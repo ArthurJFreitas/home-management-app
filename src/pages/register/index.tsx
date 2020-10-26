@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { Image, TouchableOpacity, View, Button } from 'react-native'
+import { Image, TouchableOpacity, View } from 'react-native'
 
 import Text from '../../components/Text'
 
@@ -8,11 +8,9 @@ import facebookIcon from '../../assets/images/icons/facebook-icon-color-2.png'
 import googleIcon from '../../assets/images/icons/google-icon-color.png'
 
 import * as Styled from './styles'
-import TextLink from '../../components/TextLink'
 
 
-
-const Login = ({ navigation }: any) => {
+const Register = () => {
     const [values, setValues] = useState({
         email: "",
         password: ""
@@ -30,7 +28,7 @@ const Login = ({ navigation }: any) => {
         <Styled.LoginContainer>
 
             <Styled.TitleContainer>
-                <Text size="22px" weight="Bold">Login</Text>
+                <Text size="22px" weight="Bold">Registro</Text>
             </Styled.TitleContainer>
 
             <Styled.SubtitleContainer>
@@ -42,7 +40,7 @@ const Login = ({ navigation }: any) => {
                 <Styled.IconButton >
                     <Styled.Image source={facebookIcon} />
                 </Styled.IconButton>
-
+ 
                 <Styled.IconButton >
                     <Styled.Image source={googleIcon} />
                 </Styled.IconButton>
@@ -78,19 +76,7 @@ const Login = ({ navigation }: any) => {
                 <Styled.Button>
                     <Styled.ButtonText>Entrar</Styled.ButtonText>
                 </Styled.Button>
-                <Text>Ainda não esta registrado?
-
-
-                </Text>
-
-                <TextLink
-                       onPress={() => 
-                        navigation.navigate('Register')
-                    }
-                    >
-                        Registre-se
-                    </TextLink>
-
+                <Text>Ainda não esta registrado? Registre-se</Text>
             </Styled.ButtonContainer>
 
 
@@ -101,5 +87,5 @@ const Login = ({ navigation }: any) => {
     )
 }
 
-export default Login
+export default Register
 
