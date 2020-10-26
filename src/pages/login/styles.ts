@@ -106,3 +106,7 @@ width:100%;
 
 `
 
+export const ErrorMessage = styled.Text`
+    color:#e00d0d;
+`
+

@@ -6,7 +6,7 @@ import TextLink from '../../components/TextLink'
 import facebookIcon from '../../assets/images/icons/facebook-icon-color-2.png'
 import googleIcon from '../../assets/images/icons/google-icon-color.png'
 
-import {LoginApi} from '../../services/api'
+import api from '../../services/api'
 
 import * as Styled from './styles'
 
@@ -17,6 +17,7 @@ const Login = ({ navigation }: any) => {
         email: "",
         password: ""
     })
+    const [error, setError] = useState("")
 
     const handleEmailChange = (email: string) => {
         setValues({ ...values, email })
@@ -26,9 +27,24 @@ const Login = ({ navigation }: any) => {
         setValues({ ...values, password })
     }
 
-    const handleLogin = async() => {
-        LoginApi(values)
-     
+    interface Props {
+        data: any
+    }
+
+    const onSuccess = ({ data }: Props) => {
+
+        console.log(data)
+
+    };
+
+    const onFailure = (error: any) => {
+        setError(error.response.data.error)
+    };
+
+    const handleLogin = async () => {
+        await api.post('/login', { ...values })
+            .then(onSuccess)
+            .catch(onFailure);
     }
 
 
@@ -79,11 +95,17 @@ const Login = ({ navigation }: any) => {
                 />
             </Styled.ViewContainer>
 
+            <Styled.ViewContainer>
+                <Styled.ErrorMessage>
+                    {error}
+                </Styled.ErrorMessage>
+            </Styled.ViewContainer>
+
 
             <Styled.ButtonContainer>
                 <Styled.Button onPress={
                     handleLogin}
-                    >
+                >
                     <Styled.ButtonText>Entrar</Styled.ButtonText>
                 </Styled.Button>
                 <Text>Ainda não esta registrado?
@@ -92,11 +114,11 @@ const Login = ({ navigation }: any) => {
                 </Text>
 
                 <TextLink
-                       onPress={() => navigation.navigate('Register')
+                    onPress={() => navigation.navigate('Register')
 
                     }
-                    >
-                        Registre-se
+                >
+                    Registre-se
                     </TextLink>
 
             </Styled.ButtonContainer>

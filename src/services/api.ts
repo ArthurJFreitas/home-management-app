@@ -8,14 +8,4 @@ interface LoginProps {
     email: string,
 }
 
-export const LoginApi = async (data: any) => {
-    try {
-        const res = await api.post('/login',{...data})
-            .then(res => console.log(res.data))
-            .catch(err => console.log(err))
-        return res
-    }
-    catch {
-        Alert.alert('Deu merda')
-    }
-}   
+export default api
