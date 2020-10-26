@@ -17,7 +17,7 @@ import Routes from './routes/'
 const App = () => {
   return (
     <NavigationContainer>
-      {/* <StatusBar barStyle={'dark-content'} backgroundColor="#fff"/> */}
+      <StatusBar barStyle={'light-content'} backgroundColor="#77056D"/>
       <Routes />
     </NavigationContainer>
   );

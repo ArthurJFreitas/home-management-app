@@ -57,7 +57,7 @@ const Login = ({ navigation }: any) => {
             </Styled.TitleContainer>
 
             <Styled.SubtitleContainer>
-                <Text color="#7F7F7F" weight="Loght">Access account</Text>
+                <Text color="#7F7F7F" weight="Loght">Entrar com</Text>
             </Styled.SubtitleContainer>
 
             <Styled.ButtonsWrapper>

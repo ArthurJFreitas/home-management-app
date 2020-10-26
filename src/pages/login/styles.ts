@@ -15,17 +15,18 @@ export const LoginContainer = styled(View)`
 
 
 
+
 `
 
 export const TitleContainer = styled.View`
     align-items:center;
-    margin-bottom:50px;
+    margin-bottom:30px;
 `
 
 
 export const SubtitleContainer = styled.View`
     align-items:center;
-    margin-bottom:50px;
+    margin-bottom:30px;
 `
 
 export const ButtonsWrapper = styled.View`
@@ -74,7 +75,7 @@ export const Input = styled.TextInput`
 export const Button = styled.TouchableOpacity`
     align-items:center;
     justify-content:center;
-    background-color:#466475;
+    background-color:#77056D;
     height:45px;
     border-radius:12px;
 
