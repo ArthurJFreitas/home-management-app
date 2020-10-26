@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 
-import { Image, TouchableOpacity, View, Button } from 'react-native'
-
 import Text from '../../components/Text'
+import TextLink from '../../components/TextLink'
 
 import facebookIcon from '../../assets/images/icons/facebook-icon-color-2.png'
 import googleIcon from '../../assets/images/icons/google-icon-color.png'
 
+import {LoginApi} from '../../services/api'
+
 import * as Styled from './styles'
-import TextLink from '../../components/TextLink'
 
 
 
@@ -25,6 +25,12 @@ const Login = ({ navigation }: any) => {
     const handlePasswordChange = (password: string) => {
         setValues({ ...values, password })
     }
+
+    const handleLogin = async() => {
+        LoginApi(values)
+     
+    }
+
 
     return (
         <Styled.LoginContainer>
@@ -75,7 +81,9 @@ const Login = ({ navigation }: any) => {
 
 
             <Styled.ButtonContainer>
-                <Styled.Button>
+                <Styled.Button onPress={
+                    handleLogin}
+                    >
                     <Styled.ButtonText>Entrar</Styled.ButtonText>
                 </Styled.Button>
                 <Text>Ainda não esta registrado?
@@ -84,8 +92,8 @@ const Login = ({ navigation }: any) => {
                 </Text>
 
                 <TextLink
-                       onPress={() => 
-                        navigation.navigate('Register')
+                       onPress={() => navigation.navigate('Register')
+
                     }
                     >
                         Registre-se
