@@ -2,13 +2,17 @@ import React from 'react';
 import {
   View,
   Text,
+  StatusBar
 } from 'react-native';
 import Login from './src/pages/login';
 
 
 const App = () => {
   return (
-         <Login />
+    <>
+      <StatusBar barStyle={'dark-content'} backgroundColor="#fff"/>
+      <Login />
+    </>
   );
 };
 
