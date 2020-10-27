@@ -4,26 +4,48 @@ import { Image, TouchableOpacity, View } from 'react-native'
 
 import Text from '../../components/Text'
 
-import facebookIcon from '../../assets/images/icons/facebook-icon-color-2.png'
-import googleIcon from '../../assets/images/icons/google-icon-color.png'
+import api from '../../services/api'
 
 import * as Styled from './styles'
+import TextLink from '../../components/TextLink'
 
 
-const Register = () => {
+
+const Register = ({navigation}:any )=> {
     const [values, setValues] = useState({
+        name: "",
         email: "",
-        password: ""
+        phone: "",
+        password: "",
+        passwordConfirmation: ""
     })
 
+
+    const handleNameChange = (name: string) => {
+        setValues({ ...values, name })
+    }
     const handleEmailChange = (email: string) => {
         setValues({ ...values, email })
+    }
+
+    const handlePhoneChange = (phone: string) => {
+        setValues({ ...values, phone })
     }
 
     const handlePasswordChange = (password: string) => {
         setValues({ ...values, password })
     }
 
+    const handlePasswordConfirmationChange = (passwordConfirmation: string) => {
+        setValues({ ...values, passwordConfirmation })
+
+        
+    }
+
+    const handleRegister = () => {
+        api.post('/users/new', {...values})
+    }
+ 
     return (
         <Styled.LoginContainer>
 
@@ -32,30 +54,45 @@ const Register = () => {
             </Styled.TitleContainer>
 
             <Styled.SubtitleContainer>
-                <Text color="#7F7F7F" weight="Loght">Access account</Text>
+                <Text color="#7F7F7F" weight="Loght">Registre sua conta</Text>
             </Styled.SubtitleContainer>
 
-            <Styled.ButtonsWrapper>
-
-                <Styled.IconButton >
-                    <Styled.Image source={facebookIcon} />
-                </Styled.IconButton>
- 
-                <Styled.IconButton >
-                    <Styled.Image source={googleIcon} />
-                </Styled.IconButton>
-
-            </Styled.ButtonsWrapper>
-
             <Styled.ViewContainer>
+
+                <Text weight="SemiBold">
+                    Nome
+                </Text>
+
+                <Styled.Input
+                    placeholder="Nome"
+                    value={values.name}
+                    onChangeText={handleNameChange}
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                />
+
                 <Text weight="SemiBold">
                     E-mail
                 </Text>
+
+
 
                 <Styled.Input
                     placeholder="Endereço de e-mail"
                     value={values.email}
                     onChangeText={handleEmailChange}
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                />
+
+                <Text weight="SemiBold">
+                    Celular
+                </Text>
+
+                <Styled.Input
+                    placeholder="Celular"
+                    value={values.phone}
+                    onChangeText={handlePhoneChange}
                     autoCapitalize="none"
                     autoCorrect={false}
                 />
@@ -69,14 +106,33 @@ const Register = () => {
                     autoCapitalize="none"
                     autoCorrect={false}
                 />
+
+                <Text size="14px" weight="SemiBold">Confirme sua senha</Text>
+                <Styled.Input
+                    placeholder="Confirme sua senha"
+                    value={values.passwordConfirmation}
+                    onChangeText={handlePasswordConfirmationChange}
+                    secureTextEntry
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                />
             </Styled.ViewContainer>
 
 
             <Styled.ButtonContainer>
-                <Styled.Button>
-                    <Styled.ButtonText>Entrar</Styled.ButtonText>
+                <Styled.Button 
+                    onPress={handleRegister}
+                >
+                    <Styled.ButtonText>Registrar</Styled.ButtonText>
                 </Styled.Button>
-                <Text>Ainda não esta registrado? Registre-se</Text>
+
+                <TextLink weight="SemiBold"
+                    onPress={() => navigation.navigate('Register')
+
+                    }
+                >
+                    Esqueceu sua senha?
+                    </TextLink>
             </Styled.ButtonContainer>
 
 

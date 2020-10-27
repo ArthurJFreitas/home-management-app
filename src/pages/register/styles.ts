@@ -74,12 +74,14 @@ export const Input = styled.TextInput`
 export const Button = styled.TouchableOpacity`
     align-items:center;
     justify-content:center;
-    background-color:#466475;
+    
+    background-color:#77056D;
+
     height:45px;
     border-radius:12px;
 
     width:100%;
-    margin-top:32%;
+    margin-top:10%;
     margin-bottom:7%;
   
 `;
@@ -87,7 +89,6 @@ export const Button = styled.TouchableOpacity`
 export const ButtonText = styled.Text`
     color:#fff;
     font-family: "OpenSans-SemiBold";
-  
 `
 
 export const ButtonLinearGradient = styled(LinearGradient)`
