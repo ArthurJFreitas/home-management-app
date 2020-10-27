@@ -16,9 +16,9 @@ const Register = ({navigation}:any )=> {
         name: "",
         email: "",
         phone: "",
-        password: "",
-        passwordConfirmation: ""
+        password: ""
     })
+    const [ passwordConfirmation, setPasswordConfirmation] = useState("")
 
 
     const handleNameChange = (name: string) => {
@@ -37,7 +37,7 @@ const Register = ({navigation}:any )=> {
     }
 
     const handlePasswordConfirmationChange = (passwordConfirmation: string) => {
-        setValues({ ...values, passwordConfirmation })
+        setPasswordConfirmation(passwordConfirmation)
 
         
     }
@@ -110,7 +110,7 @@ const Register = ({navigation}:any )=> {
                 <Text size="14px" weight="SemiBold">Confirme sua senha</Text>
                 <Styled.Input
                     placeholder="Confirme sua senha"
-                    value={values.passwordConfirmation}
+                    value={passwordConfirmation}
                     onChangeText={handlePasswordConfirmationChange}
                     secureTextEntry
                     autoCapitalize="none"

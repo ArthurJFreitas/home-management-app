@@ -1,23 +1,29 @@
-import React from 'react'
-import { createStackNavigator } from '@react-navigation/stack'
+import React, { useState, useEffect } from 'react'
+import { View } from 'react-native'
+import AuthRoutes from './auth.routes'
+import AppRoutes from './app.routes'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import {useSelector} from 'react-redux'
 
-import Login from '../pages/login'
-import Register from '../pages/register'
-import Home from '../components/Home'
+const Router = () => {
+    const token = useSelector((state:any) => state.session.token)
 
-const Auth = createStackNavigator()
+    const getToken = async () => {
+        try {
+            const token1: any = await AsyncStorage.getItem('@token')
 
-
-const AuthRoutes = () => {
+        }
+        catch {
+            console.log('deu bosta')
+        }
+       
+    }
+    getToken()
     return (
-
-        <Auth.Navigator screenOptions={{headerShown:false}}>
-            <Auth.Screen name="Login" component={Login} />
-            <Auth.Screen name="Register" component={Register} />
-            <Auth.Screen name="Home" component={Home} />
-        </Auth.Navigator>
-
+        <>
+            { token ? <AuthRoutes /> : <AppRoutes />}
+        </>
     )
 }
 
-export default AuthRoutes
+export default Router

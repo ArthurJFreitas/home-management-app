@@ -10,6 +10,10 @@ import api from '../../services/api'
 
 import * as Styled from './styles'
 
+import {useDispatch} from 'react-redux'
+import {requestLogin} from '../../redux/actions/session'
+
+
 
 
 const Login = ({ navigation }: any) => {
@@ -17,6 +21,9 @@ const Login = ({ navigation }: any) => {
         email: "",
         password: ""
     })
+
+    const dispatch = useDispatch()
+
     const [error, setError] = useState("")
 
     const handleEmailChange = (email: string) => {
@@ -31,12 +38,19 @@ const Login = ({ navigation }: any) => {
         data: any
     }
 
-    const onSuccess = ({ data }: Props) => {
-        if(data['token']) {
-            setError("")
-            navigation.navigate('Home')
+    const onSuccess =  ({ data }: Props) => {
+
+        try {
+            if (data['token']) {
+                setError("")
+                dispatch(requestLogin(data['token']))
+                 navigation.navigate('Home')
+                
+            }
+        } catch (e) {
+          console.log('error', e)
         }
-    };
+     };
 
     const onFailure = (error: any) => {
         setError(error.response.data.error)
@@ -120,7 +134,7 @@ const Login = ({ navigation }: any) => {
                     }
                 >
                     Registre-se
-                    </TextLink>
+                </TextLink>
 
             </Styled.ButtonContainer>
         </Styled.LoginContainer>

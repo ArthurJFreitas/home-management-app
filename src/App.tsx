@@ -13,13 +13,18 @@ import {
 import Login from './pages/login';
 import Routes from './routes/'
 
+import store from './redux/store/'
+import {Provider} from 'react-redux'
+
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <StatusBar barStyle={'light-content'} backgroundColor="#77056D"/>
-      <Routes />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <StatusBar barStyle={'light-content'} backgroundColor="#77056D" />
+        <Routes />
+      </NavigationContainer>
+    </Provider>
   );
 };
 
