@@ -11,14 +11,22 @@ import TextLink from '../../components/TextLink'
 
 
 
-const Register = ({navigation}:any )=> {
+const Register = ({ navigation }: any) => {
+    const [error, setError] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        password: "",
+        passwordConfirmation: ""
+    })
+
     const [values, setValues] = useState({
         name: "",
         email: "",
         phone: "",
         password: ""
     })
-    const [ passwordConfirmation, setPasswordConfirmation] = useState("")
+    const [passwordConfirmation, setPasswordConfirmation] = useState("")
 
 
     const handleNameChange = (name: string) => {
@@ -38,14 +46,24 @@ const Register = ({navigation}:any )=> {
 
     const handlePasswordConfirmationChange = (passwordConfirmation: string) => {
         setPasswordConfirmation(passwordConfirmation)
-
-        
     }
+
+    const arePasswordsEqual = () => {
+        return passwordConfirmation === values.password
+    }
+
 
     const handleRegister = () => {
-        api.post('/users/new', {...values})
+        if (arePasswordsEqual()) {
+            setError({ ...error, passwordConfirmation: "" })
+
+            api.post('/users/new', { ...values })
+        } else {
+            setError({ ...error, passwordConfirmation: "Senhas não coincidem" })
+        }
+
     }
- 
+
     return (
         <Styled.LoginContainer>
 
@@ -70,6 +88,9 @@ const Register = ({navigation}:any )=> {
                     autoCapitalize="none"
                     autoCorrect={false}
                 />
+                <Styled.ErrorMessage>
+                    {error.password}
+                </Styled.ErrorMessage>
 
                 <Text weight="SemiBold">
                     E-mail
@@ -84,6 +105,9 @@ const Register = ({navigation}:any )=> {
                     autoCapitalize="none"
                     autoCorrect={false}
                 />
+                <Styled.ErrorMessage>
+                    {error.email}
+                </Styled.ErrorMessage>
 
                 <Text weight="SemiBold">
                     Celular
@@ -96,6 +120,9 @@ const Register = ({navigation}:any )=> {
                     autoCapitalize="none"
                     autoCorrect={false}
                 />
+                <Styled.ErrorMessage>
+                    {error.phone}
+                </Styled.ErrorMessage>
 
                 <Text size="14px" weight="SemiBold">Senha</Text>
                 <Styled.Input
@@ -106,6 +133,9 @@ const Register = ({navigation}:any )=> {
                     autoCapitalize="none"
                     autoCorrect={false}
                 />
+                <Styled.ErrorMessage>
+                    {error.password}
+                </Styled.ErrorMessage>
 
                 <Text size="14px" weight="SemiBold">Confirme sua senha</Text>
                 <Styled.Input
@@ -117,10 +147,13 @@ const Register = ({navigation}:any )=> {
                     autoCorrect={false}
                 />
             </Styled.ViewContainer>
+            <Styled.ErrorMessage>
+                {error.passwordConfirmation}
+            </Styled.ErrorMessage>
 
 
             <Styled.ButtonContainer>
-                <Styled.Button 
+                <Styled.Button
                     onPress={handleRegister}
                 >
                     <Styled.ButtonText>Registrar</Styled.ButtonText>

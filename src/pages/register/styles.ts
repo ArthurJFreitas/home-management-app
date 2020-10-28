@@ -19,13 +19,13 @@ export const LoginContainer = styled(View)`
 
 export const TitleContainer = styled.View`
     align-items:center;
-    margin-bottom:50px;
+    margin-bottom:20px;
 `
 
 
 export const SubtitleContainer = styled.View`
     align-items:center;
-    margin-bottom:50px;
+    margin-bottom:40px;
 `
 
 export const ButtonsWrapper = styled.View`
@@ -62,7 +62,7 @@ export const Input = styled.TextInput`
     background:#EBECF0;
 
     margin-bottom:13px;
-    margin-top:15px;
+    margin-top:5px;
 
     padding: 0 15px;
 
@@ -82,7 +82,7 @@ export const Button = styled.TouchableOpacity`
 
     width:100%;
     margin-top:10%;
-    margin-bottom:7%;
+    margin-bottom:3%;
   
 `;
 
@@ -105,5 +105,10 @@ export const ButtonContainer = styled.View`
 width:100%;
     align-items:center;
 
+
+`
+
+export const ErrorMessage = styled.Text`
+    color:red;
 `
 
