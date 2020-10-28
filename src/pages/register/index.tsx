@@ -12,6 +12,8 @@ import TextLink from '../../components/TextLink'
 import { Formik } from 'formik'
 import * as yup from 'yup'
 
+import AwesomeAlert from 'react-native-awesome-alerts';
+
 let validationSchema = yup.object().shape({
     name: yup.string().required('Campo obrigatório').min(4, "Ta tirando mermao"),
     email: yup.string().required('Campo obrigatório').email('Formato inválido'),
@@ -22,10 +24,14 @@ let validationSchema = yup.object().shape({
 
 
 const Register = ({ navigation }: any) => {
+    const [showAlert, setShowAlert] = useState(false)
 
     const handleRegister = (values: any) => {
+        console.log(values)
         api.post('/users/new', { ...values })
-            .then(() => Alert.alert('usuario cadastrado'))
+            .then((res) => {
+                setShowAlert(!showAlert)
+            })
     }
 
     return (
@@ -61,11 +67,32 @@ const Register = ({ navigation }: any) => {
                     errors,
                     setFieldTouched,
                     touched,
-                    handleSubmit
+                    handleSubmit,
+                    values
                 }) => (
                         <>
+                            <AwesomeAlert
 
-                        <Text weight="SemiBold">
+                                show={showAlert}
+                                showProgress={false}
+                                closeOnTouchOutside={false}
+                                closeOnHardwareBackPress={false}
+                                title="Cadastrado com sucesso"
+                                message={`Seja bem vindo(a) ${values.name}`}
+                                showConfirmButton={true}
+                                confirmText="Daora!"
+                                confirmButtonColor="#77056D"
+                                onCancelPressed={() => {
+                                    setShowAlert(!showAlert)
+
+                                }}
+                                onConfirmPressed={() => {
+                                    setShowAlert(!showAlert)
+                                    navigation.navigate("Login")
+
+                                }}
+                            />
+                            <Text weight="SemiBold">
                                 Nome
                         </Text>
 
