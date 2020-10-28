@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { Image, TouchableOpacity, View } from 'react-native'
+import { Alert, Image, TouchableOpacity, View } from 'react-native'
 
 import Text from '../../components/Text'
 
@@ -9,59 +9,23 @@ import api from '../../services/api'
 import * as Styled from './styles'
 import TextLink from '../../components/TextLink'
 
+import { Formik } from 'formik'
+import * as yup from 'yup'
+
+let validationSchema = yup.object().shape({
+    name: yup.string().required('Campo obrigatório').min(4, "Ta tirando mermao"),
+    email: yup.string().required('Campo obrigatório').email('Formato inválido'),
+    phone: yup.string().required('Campo obrigatório').min(11, "Telefone inválido"),
+    password: yup.string().required('Campo obrigatório').min(5, 'A senha precisa de no minimo 5 caracteres'),
+    passwordConfirmation: yup.string().required('Campo obrigatório').oneOf([yup.ref('password'), ''], 'Senhas não coincidem')
+})
 
 
 const Register = ({ navigation }: any) => {
-    const [error, setError] = useState({
-        name: "",
-        email: "",
-        phone: "",
-        password: "",
-        passwordConfirmation: ""
-    })
 
-    const [values, setValues] = useState({
-        name: "",
-        email: "",
-        phone: "",
-        password: ""
-    })
-    const [passwordConfirmation, setPasswordConfirmation] = useState("")
-
-
-    const handleNameChange = (name: string) => {
-        setValues({ ...values, name })
-    }
-    const handleEmailChange = (email: string) => {
-        setValues({ ...values, email })
-    }
-
-    const handlePhoneChange = (phone: string) => {
-        setValues({ ...values, phone })
-    }
-
-    const handlePasswordChange = (password: string) => {
-        setValues({ ...values, password })
-    }
-
-    const handlePasswordConfirmationChange = (passwordConfirmation: string) => {
-        setPasswordConfirmation(passwordConfirmation)
-    }
-
-    const arePasswordsEqual = () => {
-        return passwordConfirmation === values.password
-    }
-
-
-    const handleRegister = () => {
-        if (arePasswordsEqual()) {
-            setError({ ...error, passwordConfirmation: "" })
-
-            api.post('/users/new', { ...values })
-        } else {
-            setError({ ...error, passwordConfirmation: "Senhas não coincidem" })
-        }
-
+    const handleRegister = (values: any) => {
+        api.post('/users/new', { ...values })
+            .then(() => Alert.alert('usuario cadastrado'))
     }
 
     return (
@@ -75,103 +39,147 @@ const Register = ({ navigation }: any) => {
                 <Text color="#7F7F7F" weight="Loght">Registre sua conta</Text>
             </Styled.SubtitleContainer>
 
-            <Styled.ViewContainer>
-
-                <Text weight="SemiBold">
-                    Nome
-                </Text>
-
-                <Styled.Input
-                    placeholder="Nome"
-                    value={values.name}
-                    onChangeText={handleNameChange}
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                />
-                <Styled.ErrorMessage>
-                    {error.password}
-                </Styled.ErrorMessage>
-
-                <Text weight="SemiBold">
-                    E-mail
-                </Text>
 
 
+            <Formik
+                validateOnBlur={true}
+                initialValues={{
+                    name: "",
+                    email: "",
+                    phone: "",
+                    password: "",
+                    passwordConfirmation: ""
+                }}
+                onSubmit={values => {
 
-                <Styled.Input
-                    placeholder="Endereço de e-mail"
-                    value={values.email}
-                    onChangeText={handleEmailChange}
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                />
-                <Styled.ErrorMessage>
-                    {error.email}
-                </Styled.ErrorMessage>
+                    handleRegister(values)
+                }}
+                validationSchema={validationSchema}
+            >
 
-                <Text weight="SemiBold">
-                    Celular
-                </Text>
+                {({ handleChange,
+                    errors,
+                    setFieldTouched,
+                    touched,
+                    handleSubmit
+                }) => (
+                        <>
 
-                <Styled.Input
-                    placeholder="Celular"
-                    value={values.phone}
-                    onChangeText={handlePhoneChange}
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                />
-                <Styled.ErrorMessage>
-                    {error.phone}
-                </Styled.ErrorMessage>
+                        <Text weight="SemiBold">
+                                Nome
+                        </Text>
 
-                <Text size="14px" weight="SemiBold">Senha</Text>
-                <Styled.Input
-                    placeholder="Senha"
-                    value={values.password}
-                    onChangeText={handlePasswordChange}
-                    secureTextEntry
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                />
-                <Styled.ErrorMessage>
-                    {error.password}
-                </Styled.ErrorMessage>
+                            <Styled.Input
+                                onBlur={() => setFieldTouched('name')}
+                                placeholder="Nome"
+                                onChangeText={handleChange('name')}
+                                autoCapitalize="none"
+                                autoCorrect={false}
+                            />
 
-                <Text size="14px" weight="SemiBold">Confirme sua senha</Text>
-                <Styled.Input
-                    placeholder="Confirme sua senha"
-                    value={passwordConfirmation}
-                    onChangeText={handlePasswordConfirmationChange}
-                    secureTextEntry
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                />
-            </Styled.ViewContainer>
-            <Styled.ErrorMessage>
-                {error.passwordConfirmation}
-            </Styled.ErrorMessage>
+                            <Styled.ErrorMessage>
+                                {
+                                    touched.name &&
+                                    errors.name &&
+                                    errors.name
+                                }
+                            </Styled.ErrorMessage>
+
+                            <Text weight="SemiBold">
+                                E-mail
+                            </Text>
+
+                            <Styled.Input
+                                onBlur={() => setFieldTouched('email')}
+                                placeholder="Endereço de e-mail"
+                                onChangeText={handleChange('email')}
+                                autoCapitalize="none"
+                                autoCorrect={false}
+                            />
+
+                            <Styled.ErrorMessage>
+                                {
+                                    touched.email &&
+                                    errors.email &&
+                                    errors.email
+                                }
+                            </Styled.ErrorMessage>
+
+                            <Text weight="SemiBold">
+                                Celular
+                            </Text>
+
+                            <Styled.Input
+                                onBlur={() => setFieldTouched('phone')}
+                                placeholder="Celular"
+                                onChangeText={handleChange('phone')}
+                                autoCapitalize="none"
+                                autoCorrect={false}
+                            />
+                            <Styled.ErrorMessage>
+                                {
+                                    touched.phone &&
+                                    errors.phone &&
+                                    errors.phone
+                                }
+                            </Styled.ErrorMessage>
+
+                            <Text size="14px" weight="SemiBold">Senha</Text>
+                            <Styled.Input
+                                onBlur={() => setFieldTouched('password')}
+                                placeholder="Senha"
+                                onChangeText={handleChange('password')}
+                                secureTextEntry
+                                autoCapitalize="none"
+                                autoCorrect={false}
+                            />
+                            <Styled.ErrorMessage>
+                                {
+                                    touched.password &&
+                                    errors.password &&
+                                    errors.password
+                                }
+                            </Styled.ErrorMessage>
+
+                            <Text size="14px" weight="SemiBold">Confirmação de senha</Text>
+                            <Styled.Input
+                                onBlur={() => setFieldTouched('passwordConfirmation')}
+                                placeholder="Senha"
+                                onChangeText={handleChange('passwordConfirmation')}
+                                secureTextEntry
+                                autoCapitalize="none"
+                                autoCorrect={false}
+                            />
+                            <Styled.ErrorMessage>
+                                {
+                                    touched.passwordConfirmation &&
+                                    errors.passwordConfirmation &&
+                                    errors.passwordConfirmation
+                                }
+                            </Styled.ErrorMessage>
 
 
-            <Styled.ButtonContainer>
-                <Styled.Button
-                    onPress={handleRegister}
-                >
-                    <Styled.ButtonText>Registrar</Styled.ButtonText>
-                </Styled.Button>
 
-                <TextLink weight="SemiBold"
-                    onPress={() => navigation.navigate('Register')
 
-                    }
-                >
-                    Esqueceu sua senha?
+                            <Styled.ButtonContainer>
+                                <Styled.Button
+                                    onPress={handleSubmit}
+                                >
+                                    <Styled.ButtonText>Registrar</Styled.ButtonText>
+                                </Styled.Button>
+
+                                <TextLink weight="SemiBold"
+                                    onPress={() => navigation.navigate('Register')
+
+                                    }
+                                >
+                                    Esqueceu sua senha?
                     </TextLink>
-            </Styled.ButtonContainer>
+                            </Styled.ButtonContainer>
 
-
-
-
-
+                        </>
+                    )}
+            </Formik>
         </Styled.LoginContainer>
     )
 }
