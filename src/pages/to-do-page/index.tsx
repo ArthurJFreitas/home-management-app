@@ -3,32 +3,37 @@ import { View, Text, TouchableOpacity,Button, TextInput } from 'react-native'
 import { Formik } from 'formik'
 import * as yup from 'yup'
 
+interface ToDoProps {
+    title: string
+}
+
 const ToDoPage = () => {
-    const [toDoList, setToDoList] = useState([{ title: "5 socos por segundo" }])
+    const [toDoList, setToDoList]  = useState<ToDoProps[]>([])
 
 
     let validationSchema = yup.object().shape({
-        name: yup.string().required('Campo obrigatório').min(4, "Ta tirando mermao"),
+        title: yup.string().required('Campo obrigatório').min(3, "O titulo precisa de 3 letras pelo menos"),
        
     })
 
     const handleRemove = (title:string) => {
-        const newList = toDoList.filter((item: any) => item.title !== title)
+        const newList = toDoList.filter((item:ToDoProps) => item.title !== title)
         setToDoList(newList)
     }
-
 
     return (
         <View>
 
             <Formik
+                validationSchema={validationSchema}
                 validateOnBlur={true}
                 initialValues={{
                     title: ""
                 }}
 
-                onSubmit={(values:any) => {
+                onSubmit={(values:ToDoProps, {resetForm}) => {
                     setToDoList([...toDoList, values])
+                    resetForm({})
                 }}
             >
                 {({ handleChange,
@@ -39,18 +44,19 @@ const ToDoPage = () => {
                     values }) => (
                         <>
                             <TextInput
+                                value={values.title || ""}
                                 onBlur={() => setFieldTouched('title')}
-                            
                                 onChangeText={handleChange('title')}
                                 autoCapitalize="none"
                                 autoCorrect={false}
                                 placeholder="To do" />
                             <TouchableOpacity onPress={() => {
-                                console.log('a')
                                 handleSubmit()
                             }}>
                                 <Text>Adicionar to do +</Text>
+                              
                             </TouchableOpacity>
+                            <Text>{errors?.title}</Text>
                         </>
                     )
 
