@@ -5,6 +5,7 @@ import Login from '../pages/login'
 import Register from '../pages/register'
 import Home from '../components/Home'
 import NewHome from '../pages/new-home'
+import ToDoPage from '../pages/to-do-page'
 
 const Auth = createStackNavigator()
 
@@ -15,6 +16,7 @@ const AuthRoutes = () => {
         <Auth.Navigator screenOptions={{headerShown:false}}>
             <Auth.Screen name="Home" component={Home} />
             <Auth.Screen name="NewHome" component={NewHome} />
+            <Auth.Screen name="ToDoPage" component={ToDoPage} />
         </Auth.Navigator>
 
     )

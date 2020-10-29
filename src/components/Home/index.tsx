@@ -27,6 +27,11 @@ const Home = ({navigation}:any) => {
                     Criar nova casa
                 </TextLink>
                 <TextLink
+                    onPress={() => navigation.navigate('ToDoPage')}
+                >
+                    Tood
+                </TextLink>
+                <TextLink
                     onPress={handleLogout}
                 >
                     Sair
