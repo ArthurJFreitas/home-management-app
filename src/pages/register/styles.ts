@@ -1,114 +1,94 @@
-import styled from 'styled-components/native'
-import LinearGradient from 'react-native-linear-gradient'
-import Text from '../../components/Text'
-import { View } from 'react-native'
+import styled from 'styled-components/native';
+import LinearGradient from 'react-native-linear-gradient';
 
-export const LoginContainer = styled(View)`
-    flex:1;
-
-    align-items:center;
-
-
-    padding:10%;
-
-    height:100%;
-
-
-
-`
+export const LoginContainer = styled.View`
+  flex: 1;
+  align-items: center;
+  padding: 10%;
+  height: 100%;
+`;
 
 export const TitleContainer = styled.View`
-    align-items:center;
-    margin-bottom:20px;
-`
-
+  align-items: center;
+  margin-bottom: 20px;
+`;
 
 export const SubtitleContainer = styled.View`
-    align-items:center;
-    margin-bottom:40px;
-`
+  align-items: center;
+  margin-bottom: 40px;
+`;
 
 export const ButtonsWrapper = styled.View`
-    display:flex;
+  display: flex;
 
-    flex-direction:row;
-    justify-content:space-around;
-    
+  flex-direction: row;
+  justify-content: space-around;
 
-    width:100%;
-    height:8%;
-    margin-bottom:10%;
-
-`
+  width: 100%;
+  height: 8%;
+  margin-bottom: 10%;
+`;
 
 export const IconButton = styled.TouchableOpacity`
-    background:#EBECF0;
-    width:45%;
-    align-items:center;
-    justify-content:center;
-    border-radius:15px;
-    
-`
+  background: #ebecf0;
+  width: 45%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+`;
 
 export const Image = styled.Image`
-    width:30px;
-    height:30px;
-        
-`
+  width: 30px;
+  height: 30px;
+`;
 
 export const Input = styled.TextInput`
-    height:50px;
-    font-family: "OpenSans-SemiBold";
-    background:#EBECF0;
+  height: 50px;
+  font-family: 'OpenSans-SemiBold';
+  background: #ebecf0;
 
-    margin-bottom:13px;
-    margin-top:5px;
+  margin-bottom: 13px;
+  margin-top: 5px;
 
-    padding: 0 15px;
+  padding: 0 15px;
 
-    width:100%;
-    border-radius:12px;
-
+  width: 100%;
+  border-radius: 12px;
 `;
 
 export const Button = styled.TouchableOpacity`
-    align-items:center;
-    justify-content:center;
-    
-    background-color:#77056D;
+  align-items: center;
+  justify-content: center;
 
-    height:45px;
-    border-radius:12px;
+  background-color: #77056d;
 
-    width:100%;
-    margin-top:10%;
-    margin-bottom:3%;
-  
+  height: 45px;
+  border-radius: 12px;
+
+  width: 100%;
+  margin-top: 10%;
+  margin-bottom: 3%;
 `;
 
 export const ButtonText = styled.Text`
-    color:#fff;
-    font-family: "OpenSans-SemiBold";
-`
+  color: #fff;
+  font-family: 'OpenSans-SemiBold';
+`;
 
 export const ButtonLinearGradient = styled(LinearGradient)`
-    width:100%;
-    height:100%;
-`
+  width: 100%;
+  height: 100%;
+`;
 
 export const ViewContainer = styled.View`
-    width:100%;
-`
+  width: 100%;
+`;
 
 export const ButtonContainer = styled.View`
-
-width:100%;
-    align-items:center;
-
-
-`
+  width: 100%;
+  align-items: center;
+`;
 
 export const ErrorMessage = styled.Text`
-    color:red;
-`
-
+  color: red;
+`;
