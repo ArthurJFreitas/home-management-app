@@ -1,131 +1,150 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import auth from '@react-native-firebase/auth';
+import { LoginManager, AccessToken } from 'react-native-fbsdk';
+import Text from '../../components/Text';
+import TextLink from '../../components/TextLink';
+import facebookIcon from '../../assets/images/icons/facebook-icon-color-2.png';
+import googleIcon from '../../assets/images/icons/google-icon-color.png';
+import api from '../../services/api';
+import * as Styled from './styles';
 
-import Text from '../../components/Text'
-import TextLink from '../../components/TextLink'
+const Login: React.FC = ({ navigation }: any) => {
+  const [values, setValues] = useState({
+    email: '',
+    password: '',
+  });
+  const [error, setError] = useState('');
 
-import facebookIcon from '../../assets/images/icons/facebook-icon-color-2.png'
-import googleIcon from '../../assets/images/icons/google-icon-color.png'
+  const handleEmailChange = (email: string): void => {
+    setValues({ ...values, email });
+  };
 
-import api from '../../services/api'
+  const handlePasswordChange = (password: string): void => {
+    setValues({ ...values, password });
+  };
 
-import * as Styled from './styles'
+  interface Props {
+    data: any;
+  }
 
+  const onSuccess = ({ data }: Props): void => {
+    if (data.token) {
+      setError('');
+      navigation.navigate('Home');
+    }
+  };
 
+  const onFailure = (e: any): void => {
+    setError(e.response.data.error);
+  };
 
-const Login = ({ navigation }: any) => {
-    const [values, setValues] = useState({
-        email: "",
-        password: ""
-    })
-    const [error, setError] = useState("")
+  const handleLogin = async (): Promise<void> => {
+    await api
+      .post('/login', { ...values })
+      .then(onSuccess)
+      .catch(onFailure);
+  };
 
-    const handleEmailChange = (email: string) => {
-        setValues({ ...values, email })
+  const onFacebookButtonPress = async (): Promise<any> => {
+    // Attempt login with permissions
+    const result = await LoginManager.logInWithPermissions([
+      'public_profile',
+      'email',
+    ]);
+
+    if (result.isCancelled) {
+      throw new Error('canceled');
     }
 
-    const handlePasswordChange = (password: string) => {
-        setValues({ ...values, password })
+    // Once signed in, get the users AccesToken
+    const data = await AccessToken.getCurrentAccessToken();
+
+    if (!data) {
+      throw new Error('no data');
     }
 
-    interface Props {
-        data: any
-    }
+    // Create a Firebase credential with the AccessToken
+    const facebookCredential = auth.FacebookAuthProvider.credential(
+      data.accessToken
+    );
+    console.log(result);
+    console.log(data);
+    console.log(facebookCredential);
 
-    const onSuccess = ({ data }: Props) => {
-        if(data['token']) {
-            setError("")
-            navigation.navigate('Home')
-        }
-    };
+    // Sign-in the user with the credential
+    return 'vrau';
+  };
 
-    const onFailure = (error: any) => {
-        setError(error.response.data.error)
-    };
+  return (
+    <>
+      <Styled.LoginContainer>
+        <Styled.TitleContainer>
+          <Text size="22px" weight="Bold">
+            Login
+          </Text>
+        </Styled.TitleContainer>
 
-    const handleLogin = async () => {
-        await api.post('/login', { ...values })
-            .then(onSuccess)
-            .catch(onFailure);
-    }
+        <Styled.SubtitleContainer>
+          <Text color="#7F7F7F" weight="Loght">
+            Entrar com
+          </Text>
+        </Styled.SubtitleContainer>
 
+        <Styled.ButtonsWrapper>
+          <Styled.IconButton
+            onPress={(): void => {
+              onFacebookButtonPress().then(() =>
+                console.log('Signed in with Facebook!')
+              );
+            }}
+          >
+            <Styled.Image source={facebookIcon} />
+          </Styled.IconButton>
 
-    return (
-        <Styled.LoginContainer>
+          <Styled.IconButton>
+            <Styled.Image source={googleIcon} />
+          </Styled.IconButton>
+        </Styled.ButtonsWrapper>
+        <Styled.ViewContainer>
+          <Text weight="SemiBold">E-mail</Text>
 
-            <Styled.TitleContainer>
-                <Text size="22px" weight="Bold">Login</Text>
-            </Styled.TitleContainer>
+          <Styled.Input
+            placeholder="Endereço de e-mail"
+            value={values.email}
+            onChangeText={handleEmailChange}
+            autoCapitalize="none"
+            autoCorrect={false}
+          />
 
-            <Styled.SubtitleContainer>
-                <Text color="#7F7F7F" weight="Loght">Entrar com</Text>
-            </Styled.SubtitleContainer>
+          <Text size="14px" weight="SemiBold">
+            Senha
+          </Text>
+          <Styled.Input
+            placeholder="Senha"
+            value={values.password}
+            onChangeText={handlePasswordChange}
+            secureTextEntry
+            autoCapitalize="none"
+            autoCorrect={false}
+          />
+        </Styled.ViewContainer>
+        <Styled.ViewContainer>
+          <Styled.ErrorMessage>{error}</Styled.ErrorMessage>
+        </Styled.ViewContainer>
 
-            <Styled.ButtonsWrapper>
+        <Styled.ButtonContainer>
+          <Styled.Button onPress={handleLogin}>
+            <Styled.ButtonText>Entrar</Styled.ButtonText>
+          </Styled.Button>
+          <Text>Ainda não esta registrado?</Text>
 
-                <Styled.IconButton >
-                    <Styled.Image source={facebookIcon} />
-                </Styled.IconButton>
+          <TextLink onPress={(): void => navigation.navigate('Register')}>
+            Registre-se
+          </TextLink>
+        </Styled.ButtonContainer>
+      </Styled.LoginContainer>
+    </>
+  );
+};
 
-                <Styled.IconButton >
-                    <Styled.Image source={googleIcon} />
-                </Styled.IconButton>
-
-            </Styled.ButtonsWrapper>
-
-            <Styled.ViewContainer>
-                <Text weight="SemiBold">
-                    E-mail
-                </Text>
-
-                <Styled.Input
-                    placeholder="Endereço de e-mail"
-                    value={values.email}
-                    onChangeText={handleEmailChange}
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                />
-
-                <Text size="14px" weight="SemiBold">Senha</Text>
-                <Styled.Input
-                    placeholder="Senha"
-                    value={values.password}
-                    onChangeText={handlePasswordChange}
-                    secureTextEntry
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                />
-            </Styled.ViewContainer>
-
-            <Styled.ViewContainer>
-                <Styled.ErrorMessage>
-                    {error}
-                </Styled.ErrorMessage>
-            </Styled.ViewContainer>
-
-
-            <Styled.ButtonContainer>
-                <Styled.Button onPress={
-                    handleLogin}
-                >
-                    <Styled.ButtonText>Entrar</Styled.ButtonText>
-                </Styled.Button>
-                <Text>Ainda não esta registrado?
-
-
-                </Text>
-
-                <TextLink
-                    onPress={() => navigation.navigate('Register')
-
-                    }
-                >
-                    Registre-se
-                    </TextLink>
-
-            </Styled.ButtonContainer>
-        </Styled.LoginContainer>
-    )
-}
-
-export default Login
-
+export default Login;

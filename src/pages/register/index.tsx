@@ -1,91 +1,82 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
-import { Image, TouchableOpacity, View } from 'react-native'
+import Text from '../../components/Text';
 
-import Text from '../../components/Text'
+import facebookIcon from '../../assets/images/icons/facebook-icon-color-2.png';
+import googleIcon from '../../assets/images/icons/google-icon-color.png';
 
-import facebookIcon from '../../assets/images/icons/facebook-icon-color-2.png'
-import googleIcon from '../../assets/images/icons/google-icon-color.png'
+import * as Styled from './styles';
 
-import * as Styled from './styles'
+const Register: React.FC = () => {
+  const [values, setValues] = useState({
+    email: '',
+    password: '',
+  });
 
+  const handleEmailChange = (email: string): any => {
+    setValues({ ...values, email });
+  };
 
-const Register = () => {
-    const [values, setValues] = useState({
-        email: "",
-        password: ""
-    })
+  const handlePasswordChange = (password: string): any => {
+    setValues({ ...values, password });
+  };
 
-    const handleEmailChange = (email: string) => {
-        setValues({ ...values, email })
-    }
+  return (
+    <Styled.LoginContainer>
+      <Styled.TitleContainer>
+        <Text size="22px" weight="Bold">
+          Registro
+        </Text>
+      </Styled.TitleContainer>
 
-    const handlePasswordChange = (password: string) => {
-        setValues({ ...values, password })
-    }
+      <Styled.SubtitleContainer>
+        <Text color="#7F7F7F" weight="Loght">
+          Access account
+        </Text>
+      </Styled.SubtitleContainer>
 
-    return (
-        <Styled.LoginContainer>
+      <Styled.ButtonsWrapper>
+        <Styled.IconButton>
+          <Styled.Image source={facebookIcon} />
+        </Styled.IconButton>
 
-            <Styled.TitleContainer>
-                <Text size="22px" weight="Bold">Registro</Text>
-            </Styled.TitleContainer>
+        <Styled.IconButton>
+          <Styled.Image source={googleIcon} />
+        </Styled.IconButton>
+      </Styled.ButtonsWrapper>
 
-            <Styled.SubtitleContainer>
-                <Text color="#7F7F7F" weight="Loght">Access account</Text>
-            </Styled.SubtitleContainer>
+      <Styled.ViewContainer>
+        <Text weight="SemiBold">E-mail</Text>
 
-            <Styled.ButtonsWrapper>
+        <Styled.Input
+          placeholder="Endereço de e-mail"
+          value={values.email}
+          onChangeText={handleEmailChange}
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
 
-                <Styled.IconButton >
-                    <Styled.Image source={facebookIcon} />
-                </Styled.IconButton>
- 
-                <Styled.IconButton >
-                    <Styled.Image source={googleIcon} />
-                </Styled.IconButton>
+        <Text size="14px" weight="SemiBold">
+          Senha
+        </Text>
+        <Styled.Input
+          placeholder="Senha"
+          value={values.password}
+          onChangeText={handlePasswordChange}
+          secureTextEntry
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
+      </Styled.ViewContainer>
 
-            </Styled.ButtonsWrapper>
+      <Styled.ButtonContainer>
+        <Styled.Button>
+          <Styled.ButtonText>Entrar</Styled.ButtonText>
+        </Styled.Button>
+        <Text>Ainda não esta registrado? Registre-se</Text>
+      </Styled.ButtonContainer>
+    </Styled.LoginContainer>
+  );
+};
 
-            <Styled.ViewContainer>
-                <Text weight="SemiBold">
-                    E-mail
-                </Text>
-
-                <Styled.Input
-                    placeholder="Endereço de e-mail"
-                    value={values.email}
-                    onChangeText={handleEmailChange}
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                />
-
-                <Text size="14px" weight="SemiBold">Senha</Text>
-                <Styled.Input
-                    placeholder="Senha"
-                    value={values.password}
-                    onChangeText={handlePasswordChange}
-                    secureTextEntry
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                />
-            </Styled.ViewContainer>
-
-
-            <Styled.ButtonContainer>
-                <Styled.Button>
-                    <Styled.ButtonText>Entrar</Styled.ButtonText>
-                </Styled.Button>
-                <Text>Ainda não esta registrado? Registre-se</Text>
-            </Styled.ButtonContainer>
-
-
-
-
-
-        </Styled.LoginContainer>
-    )
-}
-
-export default Register
-
+export default Register;

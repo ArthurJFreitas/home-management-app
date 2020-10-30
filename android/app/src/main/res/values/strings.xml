@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">homeManagement</string>
+    <string name="app_name">homemanagement</string>
+    <string name="facebook_app_id">1952746878196253</string>
+    <string name="fb_login_protocol_scheme">fb1952746878196253</string>
 </resources>

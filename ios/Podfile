@@ -3,12 +3,12 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 platform :ios, '10.0'
 
-target 'homeManagement' do
+target 'homemanagement' do
   config = use_native_modules!
 
   use_react_native!(:path => config["reactNativePath"])
 
-  target 'homeManagementTests' do
+  target 'homemanagementTests' do
     inherit! :complete
     # Pods for testing
   end
@@ -23,10 +23,10 @@ target 'homeManagement' do
   end
 end
 
-target 'homeManagement-tvOS' do
-  # Pods for homeManagement-tvOS
+target 'homemanagement-tvOS' do
+  # Pods for homemanagement-tvOS
 
-  target 'homeManagement-tvOSTests' do
+  target 'homemanagement-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end

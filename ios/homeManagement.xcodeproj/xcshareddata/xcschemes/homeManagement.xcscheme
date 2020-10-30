@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "homeManagement.app"
-               BlueprintName = "homeManagement"
-               ReferencedContainer = "container:homeManagement.xcodeproj">
+               BuildableName = "homemanagement.app"
+               BlueprintName = "homemanagement"
+               ReferencedContainer = "container:homemanagement.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "homeManagementTests.xctest"
-               BlueprintName = "homeManagementTests"
-               ReferencedContainer = "container:homeManagement.xcodeproj">
+               BuildableName = "homemanagementTests.xctest"
+               BlueprintName = "homemanagementTests"
+               ReferencedContainer = "container:homemanagement.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "homeManagement.app"
-            BlueprintName = "homeManagement"
-            ReferencedContainer = "container:homeManagement.xcodeproj">
+            BuildableName = "homemanagement.app"
+            BlueprintName = "homemanagement"
+            ReferencedContainer = "container:homemanagement.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "homeManagement.app"
-            BlueprintName = "homeManagement"
-            ReferencedContainer = "container:homeManagement.xcodeproj">
+            BuildableName = "homemanagement.app"
+            BlueprintName = "homemanagement"
+            ReferencedContainer = "container:homemanagement.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
