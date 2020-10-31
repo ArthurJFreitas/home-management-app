@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { LoginManager, AccessToken } from 'react-native-fbsdk';
 import auth from '@react-native-firebase/auth';
 import { useDispatch } from 'react-redux';
+import { GoogleSignin } from '@react-native-community/google-signin';
 import Text from '../../components/Text';
 import TextLink from '../../components/TextLink';
 import facebookIcon from '../../assets/images/icons/facebook-icon-color-2.png';
@@ -85,6 +86,22 @@ const Login: React.FC = ({ navigation }: any) => {
     return 'vrau';
   };
 
+  const onFacebookPressButton = async (): Promise<string> => {
+    // Get the users ID token
+    const { idToken } = await GoogleSignin.signIn();
+
+    // Create a Google credential with the token
+    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+
+    console.log(googleCredential);
+
+    return 'vrau';
+  };
+
+  GoogleSignin.configure({
+    webClientId: process.env.GOOGLE_ID,
+  });
+
   return (
     <Styled.LoginContainer>
       <Styled.TitleContainer>
@@ -100,11 +117,19 @@ const Login: React.FC = ({ navigation }: any) => {
       </Styled.SubtitleContainer>
 
       <Styled.ButtonsWrapper>
-        <Styled.IconButton>
+        <Styled.IconButton
+          onPress={(): void => {
+            onFacebookButtonPress();
+          }}
+        >
           <Styled.Image source={facebookIcon} />
         </Styled.IconButton>
 
-        <Styled.IconButton>
+        <Styled.IconButton
+          onPress={(): void => {
+            onFacebookPressButton();
+          }}
+        >
           <Styled.Image source={googleIcon} />
         </Styled.IconButton>
       </Styled.ButtonsWrapper>
@@ -143,7 +168,7 @@ const Login: React.FC = ({ navigation }: any) => {
         </Styled.Button>
         <Text>Ainda não esta registrado?</Text>
 
-        <TextLink onPress={() => navigation.navigate('Register')}>
+        <TextLink onPress={(): void => navigation.navigate('Register')}>
           Registre-se
         </TextLink>
       </Styled.ButtonContainer>
