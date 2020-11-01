@@ -27,51 +27,54 @@ const ToDoPage = () => {
       <Formik
         validationSchema={validationSchema}
         validateOnBlur
-            initialValues={{
+        initialValues={{
           title: '',
         }}
         onSubmit={(values: ToDoProps, { resetForm }) => {
           setToDoList([...toDoList, values]);
           resetForm({});
         }}
-          >
-            {({ handleChange,
+      >
+        {({
+          handleChange,
           errors,
           setFieldTouched,
           touched,
           handleSubmit,
           values,
-                      <>
-            <TextInput
-                              value={values.title || ""}
-              onBlur={() => setFieldTouched('title')}
-                              onChangeText={handleChange('title')}
-                              autoCapitalize="none"
-              autoCorrect={false}
-                              placeholder="To do"
-                            />
-                          <TouchableOpacity onPress={() => {
-                handleSubmit();
-              }}
-            >
-              <Text>Adicionar to do +</Text>
-            </TouchableOpacity>
-            <Text>{errors?.title}</Text>
-          </>
-        )}
+        }) => {
+          return (
+            <>
+              <TextInput
+                value={values.title || ''}
+                onBlur={() => setFieldTouched('title')}
+                onChangeText={handleChange('title')}
+                autoCapitalize="none"
+                autoCorrect={false}
+                placeholder="To do"
+              />
+              <TouchableOpacity
+                onPress={() => {
+                  handleSubmit();
+                }}
+              >
+                <Text>Adicionar to do +</Text>
+              </TouchableOpacity>
+              <Text>{errors?.title}</Text>
+            </>
+          );
+        }}
       </Formik>
-
-          {toDoList?.map(({ title }, key) => (
-                <View key={key}>
-                    <Text>{title}</Text>
-                    <TouchableOpacity
-                        onPress={() => handleRemove(title)}
-                    >
-                        <Text>Remover</Text>
-                    </TouchableOpacity>
-                </View>
-              )
-      ))}
+      {toDoList.map(({ title }) => {
+        return (
+          <View key={title}>
+            <Text>{title}</Text>
+            <TouchableOpacity onPress={() => handleRemove(title)}>
+              <Text>Remover</Text>
+            </TouchableOpacity>
+          </View>
+        );
+      })}
     </View>
   );
 };
