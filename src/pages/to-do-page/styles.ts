@@ -32,12 +32,23 @@ export const AddToDoWrapper = styled.View`
   align-items: center;
 `;
 
-export const AddButton = styled.TouchableOpacity`
+export const PlusButton = styled.TouchableOpacity`
   border-radius: 50px;
   background-color: #77056d;
 
   width: 50px;
   height: 50px;
+
+  align-items: center;
+  justify-content: center;
+`;
+
+export const AddButton = styled.TouchableOpacity`
+  background-color: #77056d;
+
+  width: 150px;
+  height: 50px;
+  border-radius: 15px;
 
   align-items: center;
   justify-content: center;

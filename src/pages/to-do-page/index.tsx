@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { View, TouchableOpacity, Button, TextInput } from 'react-native';
+import { View, TouchableOpacity, TextInput } from 'react-native';
 
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import Animated from 'react-native-reanimated';
+// import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
 
 import Text from '../../components/Text';
@@ -68,11 +68,11 @@ const ToDoPage = () => {
                 onPress={() => {
                   sheetRef.current.snapTo(0);
                   setShowBottomModal(!showBottomModal);
-                  // handleSubmit();
+                  handleSubmit();
                 }}
               >
-                <Text color="#fff" size="50">
-                  +
+                <Text color="#fff" size="14">
+                  + Adicionar tarefa
                 </Text>
               </Styled.AddButton>
             </Styled.AddToDoWrapper>
@@ -116,7 +116,7 @@ const ToDoPage = () => {
             );
           })}
         </Styled.DaysOfTheWeekWrapper>
-        <Styled.AddButton
+        <Styled.PlusButton
           onPress={() => {
             setShowBottomModal(!showBottomModal);
           }}
@@ -124,7 +124,7 @@ const ToDoPage = () => {
           <Text color="#fff" size="50">
             +
           </Text>
-        </Styled.AddButton>
+        </Styled.PlusButton>
       </Styled.Container>
 
       {showBottomModal && (
