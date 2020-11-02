@@ -42,20 +42,6 @@ export const Image = styled.Image`
   height: 30px;
 `;
 
-export const Input = styled.TextInput`
-  height: 50px;
-  font-family: 'OpenSans-SemiBold';
-  background: #ebecf0;
-
-  margin-bottom: 13px;
-  margin-top: 5px;
-
-  padding: 0 15px;
-
-  width: 100%;
-  border-radius: 12px;
-`;
-
 export const Button = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
@@ -87,8 +73,4 @@ export const ViewContainer = styled.View`
 export const ButtonContainer = styled.View`
   width: 100%;
   align-items: center;
-`;
-
-export const ErrorMessage = styled.Text`
-  color: red;
 `;

@@ -9,6 +9,8 @@ import api from '../../services/api';
 
 import * as Styled from './styles';
 import TextLink from '../../components/TextLink';
+import Input from '../../components/Input';
+import ErrorMessage from '../../components/ErrorMessage';
 
 const validationSchema = yup.object().shape({
   name: yup.string().required('Campo obrigatório').min(4, 'Ta tirando mermao'),
@@ -94,7 +96,7 @@ const Register = ({ navigation }: any) => {
             />
             <Text weight="SemiBold">Nome</Text>
 
-            <Styled.Input
+            <Input
               onBlur={() => setFieldTouched('name')}
               placeholder="Nome"
               onChangeText={handleChange('name')}
@@ -102,13 +104,13 @@ const Register = ({ navigation }: any) => {
               autoCorrect={false}
             />
 
-            <Styled.ErrorMessage>
+            <ErrorMessage>
               {touched.name && errors.name && errors.name}
-            </Styled.ErrorMessage>
+            </ErrorMessage>
 
             <Text weight="SemiBold">E-mail</Text>
 
-            <Styled.Input
+            <Input
               onBlur={() => setFieldTouched('email')}
               placeholder="Endereço de e-mail"
               onChangeText={handleChange('email')}
@@ -116,27 +118,27 @@ const Register = ({ navigation }: any) => {
               autoCorrect={false}
             />
 
-            <Styled.ErrorMessage>
+            <ErrorMessage>
               {touched.email && errors.email && errors.email}
-            </Styled.ErrorMessage>
+            </ErrorMessage>
 
             <Text weight="SemiBold">Celular</Text>
 
-            <Styled.Input
+            <Input
               onBlur={() => setFieldTouched('phone')}
               placeholder="Celular"
               onChangeText={handleChange('phone')}
               autoCapitalize="none"
               autoCorrect={false}
             />
-            <Styled.ErrorMessage>
+            <ErrorMessage>
               {touched.phone && errors.phone && errors.phone}
-            </Styled.ErrorMessage>
+            </ErrorMessage>
 
             <Text size="14px" weight="SemiBold">
               Senha
             </Text>
-            <Styled.Input
+            <Input
               onBlur={() => setFieldTouched('password')}
               placeholder="Senha"
               onChangeText={handleChange('password')}
@@ -144,14 +146,14 @@ const Register = ({ navigation }: any) => {
               autoCapitalize="none"
               autoCorrect={false}
             />
-            <Styled.ErrorMessage>
+            <ErrorMessage>
               {touched.password && errors.password && errors.password}
-            </Styled.ErrorMessage>
+            </ErrorMessage>
 
             <Text size="14px" weight="SemiBold">
               Confirmação de senha
             </Text>
-            <Styled.Input
+            <Input
               onBlur={() => setFieldTouched('passwordConfirmation')}
               placeholder="Senha"
               onChangeText={handleChange('passwordConfirmation')}
@@ -159,11 +161,11 @@ const Register = ({ navigation }: any) => {
               autoCapitalize="none"
               autoCorrect={false}
             />
-            <Styled.ErrorMessage>
+            <ErrorMessage>
               {touched.passwordConfirmation &&
                 errors.passwordConfirmation &&
                 errors.passwordConfirmation}
-            </Styled.ErrorMessage>
+            </ErrorMessage>
 
             <Styled.ButtonContainer>
               <Styled.Button onPress={handleSubmit}>
