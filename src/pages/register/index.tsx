@@ -94,79 +94,86 @@ const Register = ({ navigation }: any) => {
                 navigation.navigate('Login');
               }}
             />
-            <Text weight="SemiBold">Nome</Text>
+            <Styled.FormField>
+              <Text weight="SemiBold">Nome</Text>
 
-            <Input
-              onBlur={() => setFieldTouched('name')}
-              placeholder="Nome"
-              onChangeText={handleChange('name')}
-              autoCapitalize="none"
-              autoCorrect={false}
-            />
+              <Input
+                onBlur={() => setFieldTouched('name')}
+                placeholder="Nome"
+                onChangeText={handleChange('name')}
+                autoCapitalize="none"
+                autoCorrect={false}
+              />
+              <ErrorMessage>
+                {touched.name && errors.name && errors.name}
+              </ErrorMessage>
+            </Styled.FormField>
 
-            <ErrorMessage>
-              {touched.name && errors.name && errors.name}
-            </ErrorMessage>
+            <Styled.FormField>
+              <Text weight="SemiBold">E-mail</Text>
 
-            <Text weight="SemiBold">E-mail</Text>
+              <Input
+                onBlur={() => setFieldTouched('email')}
+                placeholder="Endereço de e-mail"
+                onChangeText={handleChange('email')}
+                autoCapitalize="none"
+                autoCorrect={false}
+              />
+              <ErrorMessage>
+                {touched.email && errors.email && errors.email}
+              </ErrorMessage>
+            </Styled.FormField>
 
-            <Input
-              onBlur={() => setFieldTouched('email')}
-              placeholder="Endereço de e-mail"
-              onChangeText={handleChange('email')}
-              autoCapitalize="none"
-              autoCorrect={false}
-            />
+            <Styled.FormField>
+              <Text weight="SemiBold">Celular</Text>
 
-            <ErrorMessage>
-              {touched.email && errors.email && errors.email}
-            </ErrorMessage>
+              <Input
+                onBlur={() => setFieldTouched('phone')}
+                placeholder="Celular"
+                onChangeText={handleChange('phone')}
+                autoCapitalize="none"
+                autoCorrect={false}
+              />
+              <ErrorMessage>
+                {touched.phone && errors.phone && errors.phone}
+              </ErrorMessage>
+            </Styled.FormField>
 
-            <Text weight="SemiBold">Celular</Text>
+            <Styled.FormField>
+              <Text size="14px" weight="SemiBold">
+                Senha
+              </Text>
+              <Input
+                onBlur={() => setFieldTouched('password')}
+                placeholder="Senha"
+                onChangeText={handleChange('password')}
+                secureTextEntry
+                autoCapitalize="none"
+                autoCorrect={false}
+              />
+              <ErrorMessage>
+                {touched.password && errors.password && errors.password}
+              </ErrorMessage>
+            </Styled.FormField>
 
-            <Input
-              onBlur={() => setFieldTouched('phone')}
-              placeholder="Celular"
-              onChangeText={handleChange('phone')}
-              autoCapitalize="none"
-              autoCorrect={false}
-            />
-            <ErrorMessage>
-              {touched.phone && errors.phone && errors.phone}
-            </ErrorMessage>
-
-            <Text size="14px" weight="SemiBold">
-              Senha
-            </Text>
-            <Input
-              onBlur={() => setFieldTouched('password')}
-              placeholder="Senha"
-              onChangeText={handleChange('password')}
-              secureTextEntry
-              autoCapitalize="none"
-              autoCorrect={false}
-            />
-            <ErrorMessage>
-              {touched.password && errors.password && errors.password}
-            </ErrorMessage>
-
-            <Text size="14px" weight="SemiBold">
-              Confirmação de senha
-            </Text>
-            <Input
-              onBlur={() => setFieldTouched('passwordConfirmation')}
-              placeholder="Senha"
-              onChangeText={handleChange('passwordConfirmation')}
-              secureTextEntry
-              autoCapitalize="none"
-              autoCorrect={false}
-            />
-            <ErrorMessage>
-              {touched.passwordConfirmation &&
-                errors.passwordConfirmation &&
-                errors.passwordConfirmation}
-            </ErrorMessage>
-
+            <Styled.FormField>
+              <Text size="14px" weight="SemiBold">
+                Confirmação de senha
+              </Text>
+              <Input
+                onBlur={() => setFieldTouched('passwordConfirmation')}
+                placeholder="Senha"
+                onChangeText={handleChange('passwordConfirmation')}
+                secureTextEntry
+                autoCapitalize="none"
+                autoCorrect={false}
+              />
+              <ErrorMessage>
+                {touched.passwordConfirmation &&
+                  errors.passwordConfirmation &&
+                  errors.passwordConfirmation}
+              </ErrorMessage>
+            </Styled.FormField>
             <Styled.ButtonContainer>
               <Styled.Button onPress={handleSubmit}>
                 <Styled.ButtonText>Registrar</Styled.ButtonText>

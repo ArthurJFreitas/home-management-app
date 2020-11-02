@@ -10,12 +10,16 @@ export const LoginContainer = styled.View`
 
 export const TitleContainer = styled.View`
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
 
 export const SubtitleContainer = styled.View`
   align-items: center;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
+`;
+
+export const FormField = styled.View`
+  width: 100%;
 `;
 
 export const ButtonsWrapper = styled.View`
@@ -52,7 +56,7 @@ export const Button = styled.TouchableOpacity`
   border-radius: 12px;
 
   width: 100%;
-  margin-top: 10%;
+  margin-top: 2%;
   margin-bottom: 3%;
 `;
 

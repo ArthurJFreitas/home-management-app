@@ -5,8 +5,8 @@ export const Input = styled.TextInput`
   font-family: 'OpenSans-SemiBold';
   background: #ebecf0;
 
-  margin-bottom: 13px;
-  margin-top: 15px;
+  margin-bottom: 0px;
+  margin-top: 2px;
 
   padding: 0 15px;
 
