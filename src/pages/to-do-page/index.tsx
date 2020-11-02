@@ -26,6 +26,24 @@ const ToDoPage = () => {
 
   return (
     <Styled.Container>
+      <Styled.DayContainer>
+        <Text size="18" weight="Bold">
+          Segunda feira
+        </Text>
+        <Text size="18" weight="Light">
+          01/11
+        </Text>
+      </Styled.DayContainer>
+      {toDoList.map(({ title }) => {
+        return (
+          <View key={title}>
+            <Text>{title}</Text>
+            <TouchableOpacity onPress={() => handleRemove(title)}>
+              <Text>Remover</Text>
+            </TouchableOpacity>
+          </View>
+        );
+      })}
       <Formik
         validationSchema={validationSchema}
         validateOnBlur
@@ -46,7 +64,7 @@ const ToDoPage = () => {
           values,
         }) => {
           return (
-            <>
+            <Styled.AddToDoWrapper>
               <TextInput
                 value={values.title || ''}
                 onBlur={() => setFieldTouched('title')}
@@ -66,20 +84,10 @@ const ToDoPage = () => {
                   +
                 </Text>
               </Styled.AddButton>
-            </>
+            </Styled.AddToDoWrapper>
           );
         }}
       </Formik>
-      {toDoList.map(({ title }) => {
-        return (
-          <View key={title}>
-            <Text>{title}</Text>
-            <TouchableOpacity onPress={() => handleRemove(title)}>
-              <Text>Remover</Text>
-            </TouchableOpacity>
-          </View>
-        );
-      })}
     </Styled.Container>
   );
 };

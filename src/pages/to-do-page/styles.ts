@@ -6,6 +6,18 @@ export const Container = styled.View`
   padding: 10%;
 
   height: 100%;
+  justify-content: space-between;
+`;
+
+export const DayContainer = styled.View`
+  width: 55%;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+export const AddToDoWrapper = styled.View`
+  width: 100%;
+  align-items: center;
 `;
 
 export const AddButton = styled.TouchableOpacity`
