@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Button, TextInput } from 'react-native';
+import { View, TouchableOpacity, Button, TextInput } from 'react-native';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import Text from '../../components/Text';
+import * as Styled from './styles';
 
 interface ToDoProps {
   title: string;
@@ -23,7 +25,7 @@ const ToDoPage = () => {
   };
 
   return (
-    <View>
+    <Styled.Container>
       <Formik
         validationSchema={validationSchema}
         validateOnBlur
@@ -53,14 +55,17 @@ const ToDoPage = () => {
                 autoCorrect={false}
                 placeholder="To do"
               />
-              <TouchableOpacity
+
+              <Text>{errors?.title}</Text>
+              <Styled.AddButton
                 onPress={() => {
                   handleSubmit();
                 }}
               >
-                <Text>Adicionar to do +</Text>
-              </TouchableOpacity>
-              <Text>{errors?.title}</Text>
+                <Text color="#fff" size="50">
+                  +
+                </Text>
+              </Styled.AddButton>
             </>
           );
         }}
@@ -75,7 +80,7 @@ const ToDoPage = () => {
           </View>
         );
       })}
-    </View>
+    </Styled.Container>
   );
 };
 
