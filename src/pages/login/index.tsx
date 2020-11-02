@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { LoginManager, AccessToken } from 'react-native-fbsdk';
 import auth from '@react-native-firebase/auth';
-import { useDispatch } from 'react-redux';
+
 import { GoogleSignin } from '@react-native-community/google-signin';
+import { requestLogin } from '../../redux/actions/session';
+
 import Text from '../../components/Text';
 import TextLink from '../../components/TextLink';
+import Input from '../../components/Input';
+
 import facebookIcon from '../../assets/images/icons/facebook-icon-color-2.png';
 import googleIcon from '../../assets/images/icons/google-icon-color.png';
+
 import api from '../../services/api';
 import * as Styled from './styles';
-import { requestLogin } from '../../redux/actions/session';
 
 interface Props {
   data: any;
@@ -137,7 +142,7 @@ const Login: React.FC = ({ navigation }: any) => {
       <Styled.ViewContainer>
         <Text weight="SemiBold">E-mail</Text>
 
-        <Styled.Input
+        <Input
           placeholder="Endereço de e-mail"
           value={values.email}
           onChangeText={handleEmailChange}
@@ -148,7 +153,7 @@ const Login: React.FC = ({ navigation }: any) => {
         <Text size="14px" weight="SemiBold">
           Senha
         </Text>
-        <Styled.Input
+        <Input
           placeholder="Senha"
           value={values.password}
           onChangeText={handlePasswordChange}

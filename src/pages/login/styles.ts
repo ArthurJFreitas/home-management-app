@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import LinearGradient from 'react-native-linear-gradient';
-import {View} from 'react-native';
+import { View } from 'react-native';
 
 export const LoginContainer = styled(View)`
   flex: 1;
@@ -41,20 +41,6 @@ export const IconButton = styled.TouchableOpacity`
 export const Image = styled.Image`
   width: 30px;
   height: 30px;
-`;
-
-export const Input = styled.TextInput`
-  height: 50px;
-  font-family: 'OpenSans-SemiBold';
-  background: #ebecf0;
-
-  margin-bottom: 13px;
-  margin-top: 15px;
-
-  padding: 0 15px;
-
-  width: 100%;
-  border-radius: 12px;
 `;
 
 export const Button = styled.TouchableOpacity`
