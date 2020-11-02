@@ -9,6 +9,7 @@ import { requestLogin } from '../../redux/actions/session';
 import Text from '../../components/Text';
 import TextLink from '../../components/TextLink';
 import Input from '../../components/Input';
+import ErrorMessage from '../../components/ErrorMessage';
 
 import facebookIcon from '../../assets/images/icons/facebook-icon-color-2.png';
 import googleIcon from '../../assets/images/icons/google-icon-color.png';
@@ -164,7 +165,7 @@ const Login: React.FC = ({ navigation }: any) => {
       </Styled.ViewContainer>
 
       <Styled.ViewContainer>
-        <Styled.ErrorMessage>{error}</Styled.ErrorMessage>
+        <ErrorMessage>{error}</ErrorMessage>
       </Styled.ViewContainer>
 
       <Styled.ButtonContainer>

@@ -73,7 +73,3 @@ export const ButtonContainer = styled.View`
   width: 100%;
   align-items: center;
 `;
-
-export const ErrorMessage = styled.Text`
-  color: #e00d0d;
-`;

@@ -7,6 +7,7 @@ import * as yup from 'yup';
 import BottomSheet from 'reanimated-bottom-sheet';
 
 import Text from '../../components/Text';
+import ErrorMessage from '../../components/ErrorMessage';
 
 import * as Styled from './styles';
 
@@ -63,7 +64,7 @@ const ToDoPage = () => {
                 placeholder="To do"
               />
 
-              <Text>{errors?.title}</Text>
+              <ErrorMessage>{errors?.title}</ErrorMessage>
               <Styled.AddButton
                 onPress={() => {
                   sheetRef.current.snapTo(0);
