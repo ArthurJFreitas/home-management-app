@@ -8,12 +8,24 @@ export const Container = styled.View`
   height: 100%;
   justify-content: space-between;
 `;
-
-export const DayContainer = styled.View`
+export const DaysOfTheWeekWrapper = styled.View`
+  width: 100%;
+`;
+export const DayWrapper = styled.View`
   width: 55%;
   flex-direction: row;
   justify-content: space-between;
 `;
+
+export const ToDo = styled.View`
+  margin-top: 10px;
+  flex-direction: row;
+  width: 100%;
+
+  justify-content: space-between;
+`;
+
+export const Remove = styled.View``;
 
 export const AddToDoWrapper = styled.View`
   width: 100%;

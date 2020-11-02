@@ -26,24 +26,31 @@ const ToDoPage = () => {
 
   return (
     <Styled.Container>
-      <Styled.DayContainer>
-        <Text size="18" weight="Bold">
-          Segunda feira
-        </Text>
-        <Text size="18" weight="Light">
-          01/11
-        </Text>
-      </Styled.DayContainer>
-      {toDoList.map(({ title }) => {
-        return (
-          <View key={title}>
-            <Text>{title}</Text>
-            <TouchableOpacity onPress={() => handleRemove(title)}>
-              <Text>Remover</Text>
-            </TouchableOpacity>
-          </View>
-        );
-      })}
+      <Styled.DaysOfTheWeekWrapper>
+        <Styled.DayWrapper>
+          <Text size="18" weight="Bold">
+            Segunda feira
+          </Text>
+          <Text size="18" weight="Light">
+            01/11
+          </Text>
+        </Styled.DayWrapper>
+        {toDoList.map(({ title }) => {
+          return (
+            <Styled.ToDo key={title}>
+              <Text>{title}</Text>
+              <TouchableOpacity onPress={() => handleRemove(title)}>
+                <Styled.Remove>
+                  <Text size="18" weight="Bold" color="#fc0000">
+                    X
+                  </Text>
+                </Styled.Remove>
+              </TouchableOpacity>
+            </Styled.ToDo>
+          );
+        })}
+      </Styled.DaysOfTheWeekWrapper>
+
       <Formik
         validationSchema={validationSchema}
         validateOnBlur
